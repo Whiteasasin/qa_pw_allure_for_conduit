@@ -13,6 +13,7 @@ export const test = base.extend<
     users;
     infoTestLog;
     addAllureTestHierarchy;
+    cleanAllureResults;
   },
   {
     logger;
@@ -83,5 +84,19 @@ export const test = base.extend<
       await use('addAllureTestHierarhy');
     },
     { scope: 'test', auto: true },
+  ],
+  cleanAllureResults: [
+    async ({}, use) => {
+      const fs = await import('fs');
+      const path = await import('path');
+      const allureResultsPath = path.resolve(process.cwd(), 'allure-results');
+  
+      if (fs.existsSync(allureResultsPath)) {
+        fs.rmSync(allureResultsPath, { recursive: true, force: true });
+      }
+  
+      await use('cleanAllureResults');
+    },
+    { scope: 'worker', auto: true },
   ],
 });

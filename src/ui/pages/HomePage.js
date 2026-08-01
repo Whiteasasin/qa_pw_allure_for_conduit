@@ -25,8 +25,8 @@ export class HomePage {
     });
   }
 
-  async assertSingUpTabIsVisible() {
-    await this.step(`Assert the 'Sing Up' tab is visible`, async () => {
+  async assertSignUpTabIsVisible() {
+    await this.step(`Assert the 'Sign Up' tab is visible`, async () => {
       await expect(this.signUpTab).toBeVisible();
     });
   }

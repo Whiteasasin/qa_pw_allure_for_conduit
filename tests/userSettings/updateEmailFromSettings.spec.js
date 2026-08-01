@@ -7,10 +7,6 @@ test.beforeEach(async ({ page, user }) => {
   await signUpUser(page, user);
 });
 
-test.beforeEach(async ({ page, user }) => {
-  await signUpUser(page, user);
-});
-
 test('Update email from settings', async ({ page }) => {
   const settingsPage = new SettingsPage(page);
   const email = faker.internet.email().toLowerCase();
