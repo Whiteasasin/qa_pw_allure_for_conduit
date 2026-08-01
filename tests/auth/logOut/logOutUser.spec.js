@@ -14,6 +14,6 @@ test('Log out user', async ({ page }) => {
   await settingsPage.open();
   await settingsPage.logoutButtonClick();
 
-  await homePage.assertSingUpTabIsVisible();
+  await homePage.assertSignUpTabIsVisible();
 
 });
