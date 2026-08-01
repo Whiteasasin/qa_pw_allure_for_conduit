@@ -1,21 +1,23 @@
 import { test } from '../_fixtures/fixtures';
 import { signUpUser } from '../../src/ui/actions/auth/signUpUser';
 import { SettingsPage } from '../../src/ui/pages/SettingsPage';
+import { faker } from '@faker-js/faker';
 
 test.beforeEach(async ({ page, user }) => {
   await signUpUser(page, user);
 });
 
-test('Add profile picture URL from settings', async ({ page })=> {
+
+test('Add short bio from settings', async ({ page }) => {
   const settingsPage = new SettingsPage(page);
-  const link = 'https://picsum.photos/200/300';
+  const bio = faker.lorem.words(5);
 
   await settingsPage.open();
-  await settingsPage.updatePhotoLink(link);
+  await settingsPage.updateBio(bio);
   await settingsPage.updateSettingButtonClick();
 
   await page.waitForURL(/\/profile\/[^/]+$/);
 
   await settingsPage.open();
-  await settingsPage.assertPhotoLink(link);
+  await settingsPage.assertBio(bio);
 });
