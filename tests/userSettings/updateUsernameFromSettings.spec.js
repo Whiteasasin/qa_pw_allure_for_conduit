@@ -20,5 +20,5 @@ test('Update username from settings', async ({ page }) => {
 
   await page.waitForURL(`**/profile/${name}`);
 
-  await profilePage.assertUsername(name);
+  await profilePage.assertUserName(name);
 });
